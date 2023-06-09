@@ -15,9 +15,11 @@ import {
   NavigateBefore as IconNavigateBefore,
   NavigateNext as IconNavigateNext,
   Menu as IconMenu,
+  Home as IconHome,
 } from "@mui/icons-material";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { categories } from "../config";
 
 const ListItemButton = styled(MuiListItemButton, {
   shouldForwardProp: (prop) => prop !== "sub",
@@ -106,7 +108,13 @@ function Sidebar() {
       </CollapseIconButton>
       <List>
         <ListItem disablePadding>
-          <ListItemButton sx={{ pl: 1 }} selected={true} onClick={() => {}}>
+          <ListItemButton
+            sx={{ pl: 1 }}
+            selected={true}
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <ListItemIcon
               sx={{
                 minWidth: 0,
@@ -115,11 +123,34 @@ function Sidebar() {
                 justifyContent: "center",
               }}
             >
-              <IconMenu></IconMenu>
+              <IconHome></IconHome>
             </ListItemIcon>
-            <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary="Articles" />
+            <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary="Home" />
           </ListItemButton>
         </ListItem>
+        {categories?.map((category) => (
+          <ListItem disablePadding>
+            <ListItemButton
+              sx={{ pl: 1 }}
+              selected={true}
+              onClick={() => {
+                navigate(`/${category.title.toLowerCase()}`);
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  pl: 1,
+                  mr: sidebarOpened ? 2 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <category.icon></category.icon>
+              </ListItemIcon>
+              <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary={category.title} />
+            </ListItemButton>
+          </ListItem>
+        ))}
       </List>
     </Box>
   );

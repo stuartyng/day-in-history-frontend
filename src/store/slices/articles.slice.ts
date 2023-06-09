@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiGetArticles } from "../../api/articles";
+import { IArticle } from "../../types/interfaces";
 
 export const getAllArticles = createAsyncThunk("articles/getAll", async () => {
   return apiGetArticles();
 });
 
 export interface IArticlesState {
-  articles: any[];
+  articles: IArticle[];
 }
 
 const initialState: IArticlesState = {
