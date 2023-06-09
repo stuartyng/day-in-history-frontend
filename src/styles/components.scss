@@ -1,0 +1,85 @@
+.action-button-left {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+
+.action-button-right {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.rich-text-viewer {
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1.5;
+  }
+}
+
+.text-card-4line-ellipse {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  max-height: 6rem;
+}
+
+.text-card-3line-ellipse {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-height: 4.5rem;
+}
+
+.text-card-2line-ellipse {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 3rem;
+}
+
+.table-success {
+  background-color: #a9b1c8;
+
+  .MuiTableCell-root {
+    border-image-width: 0;
+    border: 0;
+  }
+
+  .MuiTableCell-root:not(.MuiTableCell-paddingCheckbox) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.table-color-l1 {
+  background: #e9e9e9;
+}
+
+.table-color-l2 {
+  background: #f2f2f2;
+}
+
+.table-color-l3 {
+  background: #f8f8f8;
+}
+
+.table-color-l4 {
+  background-color: #ffffff;
+}
+
+.MuiAutocomplete-popperDisablePortal {
+  display: none;
+}

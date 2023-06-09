@@ -1,0 +1,43 @@
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.w-full {
+  width: "100%";
+}
+
+.h-full {
+  height: "100%";
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+.MuiInputBase-sizeSmall.MuiInputBase-multiline {
+  padding: 6px 9px;
+}
