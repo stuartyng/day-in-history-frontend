@@ -14,8 +14,9 @@ import { useLayoutContext } from "../contexts/LayoutContext";
 import {
   NavigateBefore as IconNavigateBefore,
   NavigateNext as IconNavigateNext,
-  Menu as IconMenu,
+  Info as IconInfo,
   Home as IconHome,
+  PermContactCalendar as PermContactCalendarIcon,
 } from "@mui/icons-material";
 import { useEffect } from "react";
 import { useRef } from "react";
@@ -128,8 +129,8 @@ function Sidebar() {
             <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary="Home" />
           </ListItemButton>
         </ListItem>
-        {categories?.map((category) => (
-          <ListItem disablePadding>
+        {categories?.map((category, index) => (
+          <ListItem disablePadding key={index}>
             <ListItemButton
               sx={{ pl: 1 }}
               selected={true}
@@ -151,6 +152,48 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         ))}
+        <ListItem disablePadding>
+          <ListItemButton
+            sx={{ pl: 1 }}
+            selected={true}
+            onClick={() => {
+              navigate("/about");
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                pl: 1,
+                mr: sidebarOpened ? 2 : "auto",
+                justifyContent: "center",
+              }}
+            >
+              <IconInfo></IconInfo>
+            </ListItemIcon>
+            <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary="About" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton
+            sx={{ pl: 1 }}
+            selected={true}
+            onClick={() => {
+              navigate("/contactus");
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                pl: 1,
+                mr: sidebarOpened ? 2 : "auto",
+                justifyContent: "center",
+              }}
+            >
+              <PermContactCalendarIcon></PermContactCalendarIcon>
+            </ListItemIcon>
+            <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary="Contact us" />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
