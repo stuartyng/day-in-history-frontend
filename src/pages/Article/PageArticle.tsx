@@ -47,13 +47,34 @@ const PageArticle = ({}: IPageArticleProps) => {
           </PageWrapper>
         )}
         <Box display="flex" alignItems="center" justifyContent="center" sx={{ mt: 2 }}>
-          <IconButton color="error" aria-label="Google" size="large">
+          <IconButton
+            color="error"
+            aria-label="Google"
+            size="large"
+            onClick={() => {
+              window.location.assign("mailto:business.todayinhistory@gmail.com");
+            }}
+          >
             <IconGoogle fontSize="inherit" />
           </IconButton>
-          <IconButton color="primary" aria-label="Facebook" size="large">
+          <IconButton
+            color="primary"
+            aria-label="Facebook"
+            size="large"
+            onClick={() => {
+              window.location.assign("https://www.facebook.com/groups/655176086647110");
+            }}
+          >
             <IconFacebook fontSize="inherit" />
           </IconButton>
-          <IconButton color="primary" aria-label="Twitter" size="large">
+          <IconButton
+            color="primary"
+            aria-label="Twitter"
+            size="large"
+            onClick={() => {
+              // window.location.assign("https://google.com");
+            }}
+          >
             <IconTwitter fontSize="inherit" />
           </IconButton>
         </Box>
