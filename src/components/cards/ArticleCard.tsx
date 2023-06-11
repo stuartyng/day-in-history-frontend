@@ -1,7 +1,12 @@
 import { Typography, Card, CardHeader, CardContent, CardActions, IconButton, CardMedia } from "@mui/material";
 import { IArticle } from "../../types/interfaces";
 import dayjs from "dayjs";
-import { Visibility as VisibilityIcon, Favorite as FavoriteIcon, MoreVert as MoreVertIcon } from "@mui/icons-material";
+import {
+  Share as ShareIcon,
+  Visibility as VisibilityIcon,
+  Favorite as FavoriteIcon,
+  MoreVert as MoreVertIcon,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 // interface ExpandMoreProps extends IconButtonProps {
@@ -34,18 +39,16 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <Card sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
       <CardHeader
-        // avatar={
-        //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-        //     R
-        //   </Avatar>
+        // action={
+        //   <IconButton aria-label="settings">
+        //     <MoreVertIcon />
+        //   </IconButton>
         // }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
         title={article.title || "Untitled Article"}
         subheader={dayjs(article.datecreated).format("MMM DD, YYYY")}
+        onClick={() => {
+          navigate(`/article/${article._id}`);
+        }}
       />
       {article?.image && <CardMedia component="img" width="100%" image={article.image} alt="Paella dish" />}
       <CardContent sx={{ maxHeight: 200, overflow: "hidden" }}>
@@ -55,7 +58,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
       </CardContent>
       <CardActions disableSpacing sx={{ display: "flex", justifyContent: "space-between" }}>
         <IconButton aria-label="add to favorites" size="small">
-          <FavoriteIcon />
+          <ShareIcon />
         </IconButton>
         <IconButton
           onClick={() => {

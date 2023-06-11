@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import PageLayout from "./layouts/PageLayout";
 import PageLanding from "./pages/Landing/PageLanding";
@@ -9,8 +10,27 @@ import AuthLayout from "./layouts/AuthLayout/AuthLayout";
 import PageAbout from "./pages/About/PageAbout";
 import PageContactUs from "./pages/ContactUs/PageContactUs";
 import PageArticle from "./pages/Article/PageArticle";
+import { apiGetCategories } from "./api/categories";
+import { Backdrop } from "@mui/material";
+import CirclesLoader from "./components/loader/CirclesLoader";
+import { useAppDispatch, useAppSelector } from "./hooks/store";
+import { getAllCategories } from "./store/slices/category.slice";
 
 function MainRoutes() {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector((store) => store.Category.categories);
+
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, []);
+
+  if (!categories.length)
+    return (
+      <Backdrop open={true}>
+        <CirclesLoader></CirclesLoader>
+      </Backdrop>
+    );
+
   return (
     <Routes>
       <Route path="/" element={<PageLayout></PageLayout>}>
@@ -20,9 +40,9 @@ function MainRoutes() {
         <Route path="contactus" element={<PageContactUs></PageContactUs>}></Route>
         {categories.map((category) => (
           <Route
-            key={category.title}
-            path={category.title.toLowerCase()}
-            element={<PageArticles category={category.title}></PageArticles>}
+            key={category}
+            path={category.toLowerCase()}
+            element={<PageArticles category={category}></PageArticles>}
           ></Route>
         ))}
       </Route>

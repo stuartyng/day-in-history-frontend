@@ -17,10 +17,11 @@ import {
   Info as IconInfo,
   Home as IconHome,
   PermContactCalendar as PermContactCalendarIcon,
+  Article as IconArticle,
 } from "@mui/icons-material";
 import { useEffect } from "react";
 import { useRef } from "react";
-import { categories } from "../config";
+import { useAppSelector } from "../hooks/store";
 
 const ListItemButton = styled(MuiListItemButton, {
   shouldForwardProp: (prop) => prop !== "sub",
@@ -72,6 +73,7 @@ const CollapseIconButton = styled(Box, {
 
 function Sidebar() {
   const ref = useRef(null);
+  const categories = useAppSelector((store) => store.Category.categories);
   const navigate = useNavigate();
   const location = useLocation();
   const PrivateInfo = useSelector((store) => store.auth.PrivateInfo);
@@ -135,7 +137,8 @@ function Sidebar() {
               sx={{ pl: 1 }}
               selected={true}
               onClick={() => {
-                navigate(`/${category.title.toLowerCase()}`);
+                navigate(`/${category.toLowerCase()}`);
+                setSidebarOpened(false)
               }}
             >
               <ListItemIcon
@@ -146,9 +149,9 @@ function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <category.icon></category.icon>
+                <IconArticle></IconArticle>
               </ListItemIcon>
-              <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary={category.title} />
+              <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary={category} />
             </ListItemButton>
           </ListItem>
         ))}

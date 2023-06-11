@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Appbar from "../../layouts/Appbar";
 import PageWrapper from "../../layouts/PageWrapper";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
-import { Box, Grid, Typography, Backdrop } from "@mui/material";
+import { Box, Grid, Typography, Backdrop, IconButton } from "@mui/material";
+import { Facebook as IconFacebook, Google as IconGoogle, Twitter as IconTwitter } from "@mui/icons-material";
 import ArticleCard from "../../components/cards/ArticleCard";
 import { useParams } from "react-router-dom";
 import { apiGetArticle } from "../../api/articles";
@@ -45,6 +46,17 @@ const PageArticle = ({}: IPageArticleProps) => {
             <Typography variant="body1">{article?.body}</Typography>
           </PageWrapper>
         )}
+        <Box display="flex" alignItems="center" justifyContent="center" sx={{ mt: 2 }}>
+          <IconButton color="error" aria-label="Google" size="large">
+            <IconGoogle fontSize="inherit" />
+          </IconButton>
+          <IconButton color="primary" aria-label="Facebook" size="large">
+            <IconFacebook fontSize="inherit" />
+          </IconButton>
+          <IconButton color="primary" aria-label="Twitter" size="large">
+            <IconTwitter fontSize="inherit" />
+          </IconButton>
+        </Box>
       </div>
     </>
   );

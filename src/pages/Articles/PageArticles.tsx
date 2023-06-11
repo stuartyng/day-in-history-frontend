@@ -24,7 +24,9 @@ const PageArticles = ({ category }: IPageArticlesProps) => {
       <Appbar title={category}></Appbar>
       <div className="page-wrapper">
         <PageWrapper>
-          <Typography variant="h5" mb={1}>{category}</Typography>
+          <Typography variant="h5" mb={1}>
+            {category}
+          </Typography>
           <Grid container alignItems="stretch">
             {articles.map((t, index) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
