@@ -8,12 +8,14 @@ import PageSignup from "./pages/auth/PageSignUp";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout";
 import PageAbout from "./pages/About/PageAbout";
 import PageContactUs from "./pages/ContactUs/PageContactUs";
+import PageArticle from "./pages/Article/PageArticle";
 
 function MainRoutes() {
   return (
     <Routes>
       <Route path="/" element={<PageLayout></PageLayout>}>
         <Route path="" element={<PageLanding></PageLanding>}></Route>
+        <Route path="article" element={<PageArticle></PageArticle>}></Route>
         <Route path="about" element={<PageAbout></PageAbout>}></Route>
         <Route path="contactus" element={<PageContactUs></PageContactUs>}></Route>
         {categories.map((category) => (
