@@ -106,7 +106,9 @@ const Appbar = ({ title }: IAppBarProps) => {
               </IconButton>
             </Box>
           )}
-          <Box display="flex" flex={1}></Box>
+          <Box display="flex" flex={1} justifyContent="center">
+            <Typography variant="h5" fontWeight={500}> Today in History </Typography>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
