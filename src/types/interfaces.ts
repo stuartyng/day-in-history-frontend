@@ -1,4 +1,5 @@
 export interface IArticle {
+  _id: string;
   Category: string;
   author: string;
   body: string;

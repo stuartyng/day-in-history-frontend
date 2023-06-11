@@ -42,7 +42,7 @@ const ListItemButton = styled(MuiListItemButton, {
 const CollapseIconButton = styled(Box, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 100,
+  zIndex: theme.zIndex.drawer,
   transition: theme.transitions.create(["all"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,

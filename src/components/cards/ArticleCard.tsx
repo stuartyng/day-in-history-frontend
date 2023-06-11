@@ -59,7 +59,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         </IconButton>
         <IconButton
           onClick={() => {
-            navigate(`/article?title=${article.title}`);
+            navigate(`/article/${article._id}`);
           }}
         >
           <VisibilityIcon></VisibilityIcon>

@@ -15,7 +15,7 @@ function MainRoutes() {
     <Routes>
       <Route path="/" element={<PageLayout></PageLayout>}>
         <Route path="" element={<PageLanding></PageLanding>}></Route>
-        <Route path="article" element={<PageArticle></PageArticle>}></Route>
+        <Route path="article/:article_id" element={<PageArticle></PageArticle>}></Route>
         <Route path="about" element={<PageAbout></PageAbout>}></Route>
         <Route path="contactus" element={<PageContactUs></PageContactUs>}></Route>
         {categories.map((category) => (
