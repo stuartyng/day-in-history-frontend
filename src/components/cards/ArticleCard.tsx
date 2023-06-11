@@ -1,4 +1,4 @@
-import { Typography, Card, CardHeader, CardContent, CardActions, IconButton } from "@mui/material";
+import { Typography, Card, CardHeader, CardContent, CardActions, IconButton, CardMedia } from "@mui/material";
 import { IArticle } from "../../types/interfaces";
 import dayjs from "dayjs";
 import { Visibility as VisibilityIcon, Favorite as FavoriteIcon, MoreVert as MoreVertIcon } from "@mui/icons-material";
@@ -47,7 +47,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         title={article.title || "Untitled Article"}
         subheader={dayjs(article.datecreated).format("MMM DD, YYYY")}
       />
-      {/* <CardMedia component="img" height="194" image="/static/images/cards/paella.jpg" alt="Paella dish" /> */}
+      {article?.image && <CardMedia component="img" width="100%" image={article.image} alt="Paella dish" />}
       <CardContent sx={{ maxHeight: 200, overflow: "hidden" }}>
         <Typography variant="body2" color="text.secondary">
           {article.body}
