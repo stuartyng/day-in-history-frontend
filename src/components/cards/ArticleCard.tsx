@@ -133,6 +133,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             title: "Twitter",
             onClick: () => {
               handleMenuClose();
+              window.location.assign("https://twitter.com/todayin2history");
             },
           },
         ]}

@@ -72,7 +72,7 @@ const PageArticle = ({}: IPageArticleProps) => {
             aria-label="Twitter"
             size="large"
             onClick={() => {
-              // window.location.assign("https://google.com");
+              window.location.assign("https://twitter.com/todayin2history");
             }}
           >
             <IconTwitter fontSize="inherit" />
