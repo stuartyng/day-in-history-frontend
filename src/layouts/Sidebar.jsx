@@ -14,10 +14,14 @@ import { useLayoutContext } from "../contexts/LayoutContext";
 import {
   NavigateBefore as IconNavigateBefore,
   NavigateNext as IconNavigateNext,
-  Menu as IconMenu,
+  Info as IconInfo,
+  Home as IconHome,
+  PermContactCalendar as PermContactCalendarIcon,
+  Article as IconArticle,
 } from "@mui/icons-material";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useAppSelector } from "../hooks/store";
 
 const ListItemButton = styled(MuiListItemButton, {
   shouldForwardProp: (prop) => prop !== "sub",
@@ -39,7 +43,7 @@ const ListItemButton = styled(MuiListItemButton, {
 const CollapseIconButton = styled(Box, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 100,
+  zIndex: theme.zIndex.drawer,
   transition: theme.transitions.create(["all"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -69,6 +73,7 @@ const CollapseIconButton = styled(Box, {
 
 function Sidebar() {
   const ref = useRef(null);
+  const categories = useAppSelector((store) => store.Category.categories);
   const navigate = useNavigate();
   const location = useLocation();
   const PrivateInfo = useSelector((store) => store.auth.PrivateInfo);
@@ -106,7 +111,13 @@ function Sidebar() {
       </CollapseIconButton>
       <List>
         <ListItem disablePadding>
-          <ListItemButton sx={{ pl: 1 }} selected={true} onClick={() => {}}>
+          <ListItemButton
+            sx={{ pl: 1 }}
+            selected={true}
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <ListItemIcon
               sx={{
                 minWidth: 0,
@@ -115,9 +126,75 @@ function Sidebar() {
                 justifyContent: "center",
               }}
             >
-              <IconMenu></IconMenu>
+              <IconHome></IconHome>
             </ListItemIcon>
-            <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary="Articles" />
+            <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary="Home" />
+          </ListItemButton>
+        </ListItem>
+        {categories?.map((category, index) => (
+          <ListItem disablePadding key={index}>
+            <ListItemButton
+              sx={{ pl: 1 }}
+              selected={true}
+              onClick={() => {
+                navigate(`/${category.toLowerCase()}`);
+                setSidebarOpened(false)
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  pl: 1,
+                  mr: sidebarOpened ? 2 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <IconArticle></IconArticle>
+              </ListItemIcon>
+              <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary={category} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+        <ListItem disablePadding>
+          <ListItemButton
+            sx={{ pl: 1 }}
+            selected={true}
+            onClick={() => {
+              navigate("/about");
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                pl: 1,
+                mr: sidebarOpened ? 2 : "auto",
+                justifyContent: "center",
+              }}
+            >
+              <IconInfo></IconInfo>
+            </ListItemIcon>
+            <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary="About" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton
+            sx={{ pl: 1 }}
+            selected={true}
+            onClick={() => {
+              navigate("/contactus");
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                pl: 1,
+                mr: sidebarOpened ? 2 : "auto",
+                justifyContent: "center",
+              }}
+            >
+              <PermContactCalendarIcon></PermContactCalendarIcon>
+            </ListItemIcon>
+            <ListItemText sx={{ opacity: sidebarOpened ? 1 : 0 }} primary="Contact us" />
           </ListItemButton>
         </ListItem>
       </List>

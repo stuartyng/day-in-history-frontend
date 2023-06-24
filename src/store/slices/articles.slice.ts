@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiGetArticles } from "../../api/articles";
+import { IArticle } from "../../types/interfaces";
 
 export const getAllArticles = createAsyncThunk("articles/getAll", async () => {
   return apiGetArticles();
 });
 
 export interface IArticlesState {
-  articles: any[];
+  articles: IArticle[];
 }
 
 const initialState: IArticlesState = {
@@ -20,7 +21,7 @@ export const articlesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllArticles.fulfilled, (state, action) => {
-        state.articles = action.payload;
+        state.articles = action.payload.sort((a: any, b: any) => (a.datecreated > b.datecreated ? -1 : 1));
       })
       .addCase(getAllArticles.rejected, (state, action) => {
         state.articles = [];

@@ -18,7 +18,7 @@ import { Logout as IconLogout, AccountCircle as IconAccountCircle, Menu as IconM
 import { actionMenuPaperProps } from "../utils/styles";
 import { useConfirm } from "material-ui-confirm";
 import { useLayoutContext } from "../contexts/LayoutContext";
-import Icons from "../assets/Icons";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -75,6 +75,7 @@ interface IAppBarProps {
 const Appbar = ({ title }: IAppBarProps) => {
   const confirm = useConfirm();
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const [{ sidebarOpened, isMdScreen }, { setSidebarOpened }] = useLayoutContext();
 
@@ -105,7 +106,9 @@ const Appbar = ({ title }: IAppBarProps) => {
               </IconButton>
             </Box>
           )}
-          <Box display="flex" flex={1}></Box>
+          <Box display="flex" flex={1} justifyContent="center">
+            <Typography variant="h5" fontWeight={500}> Today in History </Typography>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -123,6 +126,18 @@ const Appbar = ({ title }: IAppBarProps) => {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
+              <MenuItem
+                dense
+                onClick={() => {
+                  navigate("/signin");
+                  handleCloseUserMenu();
+                }}
+              >
+                <ListItemIcon>
+                  <IconLogout fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Sign In</ListItemText>
+              </MenuItem>
               <MenuItem
                 dense
                 onClick={() => {
